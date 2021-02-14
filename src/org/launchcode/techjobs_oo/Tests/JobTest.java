@@ -1,6 +1,5 @@
 package org.launchcode.techjobs_oo.Tests;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.launchcode.techjobs_oo.*;
@@ -13,9 +12,8 @@ public class JobTest {
    private static Job job1;
    private static Job job2;
    private static Job job3;
+
    private static Job job4;
-   private static Job job5;
-   private static Job job6;
 
 
 
@@ -26,9 +24,7 @@ public class JobTest {
         job1 = new Job();
         job2 = new Job();
         job3 = new Job("Product Tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        job4 = new Job("Product Tester", new Employer(""), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        job5 = new Job();
-        job6 = new Job("", new Employer(), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        job4 = new Job("", new Employer(null), new Location(null), new PositionType(null), new CoreCompetency(null));
 
 
     }
@@ -48,11 +44,11 @@ public class JobTest {
     public void testJobConstructorSetsAllFields(){
 
         //checks to make sure the instances of said class is made
-        assertEquals(3, job3.getId() );
-        assertEquals(true, job3.getEmployer() instanceof Employer);
-        assertEquals(true, job3.getLocation() instanceof Location);
-        assertEquals(true, job3.getPositionType() instanceof PositionType);
-        assertEquals(true, job3.getCoreCompetency() instanceof CoreCompetency);
+        assertEquals(3, job3.getId());
+        assertTrue(job3.getEmployer() instanceof Employer);
+        assertTrue(job3.getLocation() instanceof Location);
+        assertTrue(job3.getPositionType() instanceof PositionType);
+        assertTrue(job3.getCoreCompetency() instanceof CoreCompetency);
 
 
         //checks to make sure the values are set
@@ -71,40 +67,49 @@ public class JobTest {
     }
 
     @Test
-    public void test(){
-        System.out.println(job6.toString());
+    public void testJobToStringAndNewLineForId(){
+        assertTrue(job3.toString().contains("ID:3\n"));
     }
-
     @Test
     public void testJobToStringAndNewLineForName(){
         assertTrue(job3.toString().contains("Name:Product Tester\n"));
-        System.out.println(job3);
+    }
+    @Test
+    public void testJobToStringNameNull(){
+        assertTrue(job4.toString().contains("Name:Data not available"));
     }
     @Test
     public void testJobToStringAndNewLineForEmployer(){
         assertTrue(job3.toString().contains("Employer:ACME\n"));
     }
     @Test
+    public void testJobToStringEmployerNull(){
+        assertTrue(job4.toString().contains("Employer:Data not available"));
+    }
+    @Test
     public void testJobToStringAndNewLineForLocation(){
         assertTrue(job3.toString().contains("Location:Desert\n"));
+    }
+    @Test
+    public void testJobToStringLocationNull(){
+        assertTrue(job4.toString().contains("Location:Data not available"));
     }
     @Test
     public void testJobToStringAndNewLineForPositionType(){
         assertTrue(job3.toString().contains("Position Type:Quality control\n"));
     }
     @Test
+    public void testJobToStringPositionTypeNull(){
+        assertTrue(job4.toString().contains("Position Type:Data not available"));
+    }
+    @Test
     public void testJobToStringAndNewLineForCompetency(){
         assertTrue(job3.toString().contains("Core Competency:Persistence\n"));
     }
-
-
-
-
-
-
-
-
-
+    @Test
+    public void testJobToStringCompetencyNull(){
+        assertTrue(job4.toString().contains("Core Competency:Data not available"));
+    }
 
 
 
