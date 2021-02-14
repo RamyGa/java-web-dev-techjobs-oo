@@ -1,25 +1,35 @@
 package org.launchcode.techjobs_oo.Tests;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.launchcode.techjobs_oo.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class JobTest {
 
-    Job job1;
-    Job job2;
-    Job job3;
+   private static Job job1;
+   private static Job job2;
+   private static Job job3;
+   private static Job job4;
+   private static Job job5;
+   private static Job job6;
 
 
 
-    @Before
-    public void creatJobObjects(){
-         job1 = new Job();
-         job2 = new Job();
-         job3 = new Job("Product Tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+
+    @BeforeClass
+    public static void creatJobObjects(){
+        job1 = new Job();
+        job2 = new Job();
+        job3 = new Job("Product Tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        job4 = new Job("Product Tester", new Employer(""), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        job5 = new Job();
+        job6 = new Job("", new Employer(), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
 
     }
 
@@ -59,6 +69,41 @@ public class JobTest {
     public void testJobsForEquality(){
         assertFalse(job1.equals(job2));
     }
+
+    @Test
+    public void test(){
+        System.out.println(job6.toString());
+    }
+
+    @Test
+    public void testJobToStringAndNewLineForName(){
+        assertTrue(job3.toString().contains("Name:Product Tester\n"));
+        System.out.println(job3);
+    }
+    @Test
+    public void testJobToStringAndNewLineForEmployer(){
+        assertTrue(job3.toString().contains("Employer:ACME\n"));
+    }
+    @Test
+    public void testJobToStringAndNewLineForLocation(){
+        assertTrue(job3.toString().contains("Location:Desert\n"));
+    }
+    @Test
+    public void testJobToStringAndNewLineForPositionType(){
+        assertTrue(job3.toString().contains("Position Type:Quality control\n"));
+    }
+    @Test
+    public void testJobToStringAndNewLineForCompetency(){
+        assertTrue(job3.toString().contains("Core Competency:Persistence\n"));
+    }
+
+
+
+
+
+
+
+
 
 
 
